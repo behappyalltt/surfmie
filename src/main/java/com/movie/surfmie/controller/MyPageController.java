@@ -8,30 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class HomeController {
+public class MyPageController {
     @Autowired
     private MemberService memberService;
 
-    @GetMapping("/login")
+    @GetMapping("/mypage")
     public String login() {
-        return "home/login";
-    }
-
-    @GetMapping("/join")
-    public String join() {
-        return "home/join";
-    }
-
-    @PostMapping("/join")
-    public String join(MemberDto memberDto) {
-        memberService.join(memberDto);
-
-        return "redirect:/login";
-    }
-
-    // 접근 불가 페이지
-    @GetMapping("/denied")
-    public String denied() {
-        return "home/denied";
+        return "mypage/mypage";
     }
 }
