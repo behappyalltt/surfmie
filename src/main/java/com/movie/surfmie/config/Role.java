@@ -1,4 +1,4 @@
-package com.movie.surfmie.entity;
+package com.movie.surfmie.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

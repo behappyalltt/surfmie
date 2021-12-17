@@ -2,7 +2,7 @@ package com.movie.surfmie.service;
 
 import com.movie.surfmie.dto.MemberDto;
 import com.movie.surfmie.entity.MemberEntity;
-import com.movie.surfmie.entity.Role;
+import com.movie.surfmie.config.Role;
 import com.movie.surfmie.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
