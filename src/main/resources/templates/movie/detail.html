@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <style>
+        .credits {
+            height: 400px;
+        }
+
+        .choiceBtn {
+            border-radius: 30px; border: 1px solid black; width: 50%; height: 100%; float: left;
+            text-align: center; line-height: 35px; font-size: 15px; background: #0e0e3f; color: white;
+        }
+
+        .notChoiceBtn {
+            border-radius: 30px; width: 50%; height: 100%; float: left;
+            text-align: center; line-height: 35px; font-size: 15px;
+        }
+    </style>
+
+    <script>
+        function changeCredits(type)
+        {
+            var otherType = '';
+            if(type == 'cast') otherType = 'crew';
+            else otherType = 'cast';
+
+            document.getElementById(type+"Btn").classList.remove('notChoiceBtn');
+            document.getElementById(type+"Btn").classList.add('choiceBtn');
+            document.getElementById(type).style.display = "";
+            document.getElementById(otherType+"Btn").classList.remove('choiceBtn');
+            document.getElementById(otherType+"Btn").classList.add('notChoiceBtn');
+            document.getElementById(otherType).style.display = "none";
+        }
+    </script>
+</head>
+<body>
+<div class="container px-4 px-lg-5" layout:fragment="content">
+    <div class="row gx-4 gx-lg-5 align-items-center my-5">
+        <div class="col-lg-5">
+            <img class="img-fluid rounded mb-4 mb-lg-0" style="width:500px;"
+                 th:src="'https://image.tmdb.org/t/p/original' + ${movie.poster_path}">
+        </div>
+        <div class="col-lg-7">
+            <h1 class="font-weight-light">[[${movie.title}]]</h1>
+            <h5 class="font-weight-light">[[${movie.tagline}]]</h5>
+            <p>[[${movie.overview}]]</p>
+            <img style="width:100%;margin-bottom: 1rem;" th:src="'https://image.tmdb.org/t/p/original' + ${movie.backdrop_path}">
+            <a class="btn btn-dark" href="#!">+ MY LIST</a>
+        </div>
+    </div>
+
+    <div style="float:left; margin-right: 15px;"><h2>TOP CREDITS</h2></div>
+    <div style="border-radius: 30px; border: 1px solid black; width: 250px; height: 40px; margin-bottom: 20px; float:left;">
+        <div id="castBtn" class="choiceBtn" onclick="changeCredits('cast')">
+            <span> 배우 </span>
+        </div>
+        <div id="crewBtn" class="notChoiceBtn" onclick="changeCredits('crew')">
+            <span> 제작진 </span>
+        </div>
+    </div>
+
+    <div id="cast" style="float:left;">
+        <div class="row gx-4 gx-lg-10">
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body credits">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${credits.cast[0].profile_path}">
+                        <hr>
+                        <span class="card-title">[[${credits.cast[0].name}]]([[${credits.cast[0].character}]])</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body credits">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${credits.cast[1].profile_path}">
+                        <hr>
+                        <span class="card-title">[[${credits.cast[1].name}]]([[${credits.cast[1].character}]])</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body credits">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${credits.cast[2].profile_path}">
+                        <hr>
+                        <span class="card-title">[[${credits.cast[2].name}]]([[${credits.cast[2].character}]])</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body credits">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${credits.cast[3].profile_path}">
+                        <hr>
+                        <span class="card-title">[[${credits.cast[3].name}]]([[${credits.cast[3].character}]])</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body credits">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${credits.cast[4].profile_path}">
+                        <hr>
+                        <span class="card-title">[[${credits.cast[4].name}]]([[${credits.cast[4].character}]])</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body credits">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${credits.cast[5].profile_path}">
+                        <hr>
+                        <span class="card-title">[[${credits.cast[5].name}]]([[${credits.cast[5].character}]])</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="crew" style="float:left; display: none;">
+        <div class="row gx-4 gx-lg-10">
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body credits">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${credits.crew[0].profile_path}">
+                        <hr>
+                        <span class="card-title">[[${credits.crew[0].name}]]([[${credits.crew[0].known_for_department}]])</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body credits">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${credits.crew[1].profile_path}">
+                        <hr>
+                        <span class="card-title">[[${credits.crew[1].name}]]([[${credits.crew[1].known_for_department}]])</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body credits">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${credits.crew[2].profile_path}">
+                        <hr>
+                        <span class="card-title">[[${credits.crew[2].name}]]([[${credits.crew[2].known_for_department}]])</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body credits">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${credits.crew[3].profile_path}">
+                        <hr>
+                        <span class="card-title">[[${credits.crew[3].name}]]([[${credits.crew[3].known_for_department}]])</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body credits">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${credits.crew[4].profile_path}">
+                        <hr>
+                        <span class="card-title">[[${credits.crew[4].name}]]([[${credits.crew[4].known_for_department}]])</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body credits">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${credits.crew[5].profile_path}">
+                        <hr>
+                        <span class="card-title">[[${credits.crew[5].name}]]([[${credits.crew[5].known_for_department}]])</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card text-white my-5 py-4 text-center" style="border-color:white;">
+        <div class="card-body"><p class="text-white m-0"></p></div>
+    </div>
+</div>
+</body>
+</html>

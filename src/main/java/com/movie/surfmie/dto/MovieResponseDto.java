@@ -12,6 +12,7 @@ public class MovieResponseDto {
     private Movie[] results;
 
     static class Movie {
+        public int id;
         public String poster_path;
         public boolean adult;
         public String overview;

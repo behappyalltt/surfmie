@@ -62,75 +62,75 @@
     </div>
 
     <div id="today" style="float:left;">
-    <div class="row gx-4 gx-lg-10">
-        <div class="col-md-2 mb-5">
-            <div class="card h-80">
-                <div class="card-body">
-                    <img style="width: 100%;"
-                         th:src="'https://image.tmdb.org/t/p/original' + ${movie_today.results[0].poster_path}">
-                    <hr>
-                    <span class="card-title">[[${movie_today.results[0].title}]]</span>
+        <div class="row gx-4 gx-lg-10">
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body trending" th:onclick="'location.href=\'/movie/detail?id='+${movie_today.results[0].id}+'\''">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${movie_today.results[0].poster_path}">
+                        <hr>
+                        <span class="card-title">[[${movie_today.results[0].title}]]</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body trending" th:onclick="'location.href=\'/movie/detail?id='+${movie_today.results[1].id}+'\''">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${movie_today.results[1].poster_path}">
+                        <hr>
+                        <span class="card-title">[[${movie_today.results[1].title}]]</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body trending" th:onclick="'location.href=\'/movie/detail?id='+${movie_today.results[2].id}+'\''">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${movie_today.results[2].poster_path}">
+                        <hr>
+                        <span class="card-title">[[${movie_today.results[2].title}]]</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body trending" th:onclick="'location.href=\'/movie/detail?id='+${movie_today.results[3].id}+'\''">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${movie_today.results[3].poster_path}">
+                        <hr>
+                        <span class="card-title">[[${movie_today.results[3].title}]]</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body trending" th:onclick="'location.href=\'/movie/detail?id='+${movie_today.results[4].id}+'\''">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${movie_today.results[4].poster_path}">
+                        <hr>
+                        <span class="card-title">[[${movie_today.results[4].title}]]</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 mb-5">
+                <div class="card h-80">
+                    <div class="card-body trending" th:onclick="'location.href=\'/movie/detail?id='+${movie_today.results[5].id}+'\''">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${movie_today.results[5].poster_path}">
+                        <hr>
+                        <span class="card-title">[[${movie_today.results[5].title}]]</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-2 mb-5">
-            <div class="card h-80">
-                <div class="card-body trending">
-                    <img style="width: 100%;"
-                         th:src="'https://image.tmdb.org/t/p/original' + ${movie_today.results[1].poster_path}">
-                    <hr>
-                    <span class="card-title">[[${movie_today.results[1].title}]]</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2 mb-5">
-            <div class="card h-80">
-                <div class="card-body trending">
-                    <img style="width: 100%;"
-                         th:src="'https://image.tmdb.org/t/p/original' + ${movie_today.results[2].poster_path}">
-                    <hr>
-                    <span class="card-title">[[${movie_today.results[2].title}]]</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2 mb-5">
-            <div class="card h-80">
-                <div class="card-body trending">
-                    <img style="width: 100%;"
-                         th:src="'https://image.tmdb.org/t/p/original' + ${movie_today.results[3].poster_path}">
-                    <hr>
-                    <span class="card-title">[[${movie_today.results[3].title}]]</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2 mb-5">
-            <div class="card h-80">
-                <div class="card-body trending">
-                    <img style="width: 100%;"
-                         th:src="'https://image.tmdb.org/t/p/original' + ${movie_today.results[4].poster_path}">
-                    <hr>
-                    <span class="card-title">[[${movie_today.results[4].title}]]</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2 mb-5">
-            <div class="card h-80">
-                <div class="card-body trending">
-                    <img style="width: 100%;"
-                         th:src="'https://image.tmdb.org/t/p/original' + ${movie_today.results[5].poster_path}">
-                    <hr>
-                    <span class="card-title">[[${movie_today.results[5].title}]]</span>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
 
     <div id="week" style="float:left; display: none;">
         <div class="row gx-4 gx-lg-10">
             <div class="col-md-2 mb-5">
                 <div class="card h-80">
-                    <div class="card-body">
+                    <div class="card-body trending" th:onclick="'location.href=\'/movie/detail?id='+${movie_week.results[0].id}+'\''">
                         <img style="width: 100%;"
                              th:src="'https://image.tmdb.org/t/p/original' + ${movie_week.results[0].poster_path}">
                         <hr>
@@ -140,7 +140,7 @@
             </div>
             <div class="col-md-2 mb-5">
                 <div class="card h-80">
-                    <div class="card-body trending">
+                    <div class="card-body trending" th:onclick="'location.href=\'/movie/detail?id='+${movie_week.results[1].id}+'\''">
                         <img style="width: 100%;"
                              th:src="'https://image.tmdb.org/t/p/original' + ${movie_week.results[1].poster_path}">
                         <hr>
@@ -150,17 +150,17 @@
             </div>
             <div class="col-md-2 mb-5">
                 <div class="card h-80">
-                    <div class="card-body trending">
-                        <img style="width: 100%;"
-                             th:src="'https://image.tmdb.org/t/p/original' + ${movie_week.results[2].poster_path}">
-                        <hr>
-                        <span class="card-title">[[${movie_week.results[2].title}]]</span>
-                    </div>
+                    <div class="card-body trending" th:onclick="'location.href=\'/movie/detail?id='+${movie_week.results[2].id}+'\''">
+                    <img style="width: 100%;"
+                         th:src="'https://image.tmdb.org/t/p/original' + ${movie_week.results[2].poster_path}">
+                    <hr>
+                    <span class="card-title">[[${movie_week.results[2].title}]]</span>
+                </div>
                 </div>
             </div>
             <div class="col-md-2 mb-5">
                 <div class="card h-80">
-                    <div class="card-body trending">
+                    <div class="card-body trending" th:onclick="'location.href=\'/movie/detail?id='+${movie_week.results[3].id}+'\''">
                         <img style="width: 100%;"
                              th:src="'https://image.tmdb.org/t/p/original' + ${movie_week.results[3].poster_path}">
                         <hr>
@@ -170,7 +170,7 @@
             </div>
             <div class="col-md-2 mb-5">
                 <div class="card h-80">
-                    <div class="card-body trending">
+                    <div class="card-body trending" th:onclick="'location.href=\'/movie/detail?id='+${movie_week.results[4].id}+'\''">
                         <img style="width: 100%;"
                              th:src="'https://image.tmdb.org/t/p/original' + ${movie_week.results[4].poster_path}">
                         <hr>
@@ -180,7 +180,7 @@
             </div>
             <div class="col-md-2 mb-5">
                 <div class="card h-80">
-                    <div class="card-body trending">
+                    <div class="card-body trending" th:onclick="'location.href=\'/movie/detail?id='+${movie_week.results[5].id}+'\''">
                         <img style="width: 100%;"
                              th:src="'https://image.tmdb.org/t/p/original' + ${movie_week.results[5].poster_path}">
                         <hr>
@@ -204,7 +204,7 @@
                     <p class="card-text" style="font-weight: bold">[[${movie_upcoming.results[0].release_date}]]</p>
                     <p class="card-text">[[${#strings.abbreviate(movie_upcoming.results[0].overview,100)}]]</p>
                 </div>
-                <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+                <div class="card-footer"><a class="btn btn-dark btn-sm" th:onclick="'location.href=\'/movie/detail?id='+${movie_upcoming.results[0].id}+'\''">More Info</a></div>
             </div>
         </div>
         <div class="col-md-4 mb-5">
@@ -217,7 +217,7 @@
                     <p class="card-text" style="font-weight: bold">[[${movie_upcoming.results[1].release_date}]]</p>
                     <p class="card-text">[[${#strings.abbreviate(movie_upcoming.results[1].overview,100)}]]</p>
                 </div>
-                <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+                <div class="card-footer"><a class="btn btn-dark btn-sm" th:onclick="'location.href=\'/movie/detail?id='+${movie_upcoming.results[1].id}+'\''">More Info</a></div>
             </div>
         </div>
         <div class="col-md-4 mb-5">
@@ -230,53 +230,52 @@
                     <p class="card-text" style="font-weight: bold">[[${movie_upcoming.results[2].release_date}]]</p>
                     <p class="card-text">[[${#strings.abbreviate(movie_upcoming.results[2].overview,100)}]]</p>
                 </div>
-                <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+                <div class="card-footer"><a class="btn btn-dark btn-sm" th:onclick="'location.href=\'/movie/detail?id='+${movie_upcoming.results[2].id}+'\''">More Info</a></div>
             </div>
         </div>
+    </div>
+
+    <div class="card text-white my-5 py-4 text-center" style="border-color:white;">
+        <div class="card-body"><p class="text-white m-0"></p></div>
     </div>
 
     <div id="test"style="float:left;display:none;">
-    <div class="row gx-4 gx-lg-5">
-        <div class="col-md-4 mb-5">
-            <div class="card h-100">
-                <div class="card-body">
-                    <img style="width: 100%;"
-                         th:src="'https://image.tmdb.org/t/p/original' + ${movie_week.results[0].poster_path}">
-                    <hr>
-                    <h2 class="card-title">[[${movie_week.results[0].title}]]</h2>
-                    <p class="card-text">[[${#strings.abbreviate(movie_week.results[0].overview,100)}]]</p>
+        <div class="row gx-4 gx-lg-5">
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${movie_week.results[0].poster_path}">
+                        <hr>
+                        <h2 class="card-title">[[${movie_week.results[0].title}]]</h2>
+                        <p class="card-text">[[${#strings.abbreviate(movie_week.results[0].overview,100)}]]</p>
+                    </div>
+                    <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
                 </div>
-                <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+            </div>
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${movie_week.results[1].poster_path}">
+                        <hr>
+                        <h2 class="card-title">[[${movie_week.results[1].title}]]</h2>
+                        <p class="card-text">[[${#strings.abbreviate(movie_week.results[1].overview,100)}]]</p></div>
+                    <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <img style="width: 100%;"
+                             th:src="'https://image.tmdb.org/t/p/original' + ${movie_week.results[2].poster_path}">
+                        <hr>
+                        <h2 class="card-title">[[${movie_week.results[2].title}]]</h2>
+                        <p class="card-text">[[${#strings.abbreviate(movie_week.results[2].overview,100)}]]</p></div>
+                    <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+                </div>
             </div>
         </div>
-        <div class="col-md-4 mb-5">
-            <div class="card h-100">
-                <div class="card-body">
-                    <img style="width: 100%;"
-                         th:src="'https://image.tmdb.org/t/p/original' + ${movie_week.results[1].poster_path}">
-                    <hr>
-                    <h2 class="card-title">[[${movie_week.results[1].title}]]</h2>
-                    <p class="card-text">[[${#strings.abbreviate(movie_week.results[1].overview,100)}]]</p></div>
-                <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-5">
-            <div class="card h-100">
-                <div class="card-body">
-                    <img style="width: 100%;"
-                         th:src="'https://image.tmdb.org/t/p/original' + ${movie_week.results[2].poster_path}">
-                    <hr>
-                    <h2 class="card-title">[[${movie_week.results[2].title}]]</h2>
-                    <p class="card-text">[[${#strings.abbreviate(movie_week.results[2].overview,100)}]]</p></div>
-                <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <div class="card text-white bg-secondary my-5 py-4 text-center">
-        <div class="card-body"><p class="text-white m-0">This call to action card is a great place to showcase some
-            important information or display a clever tagline!</p></div>
     </div>
 </div>
 </body>

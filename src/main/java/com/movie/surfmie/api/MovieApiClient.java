@@ -1,5 +1,6 @@
 package com.movie.surfmie.api;
 
+import com.movie.surfmie.dto.MovieCreditsDto;
 import com.movie.surfmie.dto.MovieDetailResponseDto;
 import com.movie.surfmie.dto.MovieResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -27,5 +28,12 @@ public class MovieApiClient {
         final HttpEntity<String> entity = new HttpEntity<>(headers);
 
         return restTemplate.exchange(url, HttpMethod.GET, entity, MovieDetailResponseDto.class, headers).getBody();
+    }
+
+    public MovieCreditsDto getMovieCredits(String url) {
+        final HttpHeaders headers = new HttpHeaders();
+        final HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        return restTemplate.exchange(url, HttpMethod.GET, entity, MovieCreditsDto.class, headers).getBody();
     }
 }

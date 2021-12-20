@@ -32,4 +32,11 @@ public class MovieController {
     public String popular() {
         return "movie/popular";
     }
+
+    @GetMapping("/movie/detail")
+    public String detail(Model model, String id) {
+        model.addAttribute("movie", movieService.getMovieDetail(id));
+        model.addAttribute("credits", movieService.getMovieCredits(id));
+        return "movie/detail";
+    }
 }

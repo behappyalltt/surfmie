@@ -82,6 +82,10 @@ public class MemberService implements UserDetailsService {
                 .code_id("M04").is_enabled(true).createDt(new Date()).updateDt(new Date())
                 .build()).getId();
 
+        if(id != null) {
+            // terms_agree 처리
+        }
+
         return id;
     }
 }

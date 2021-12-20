@@ -17,8 +17,8 @@ public class MovieDetailResponseDto {
     private String overview;
     private int popularity;
     private String poster_path;
-    private Production_company production_companies;
-    private Production_country production_countries;
+    private Production_company production_companies[];
+    private Production_country production_countries[];
     private String release_date;
     private int revenue;
     private int runtime;
@@ -31,24 +31,24 @@ public class MovieDetailResponseDto {
     private int vote_count;
 
     static class Genre {
-        private int id;
-        private String name;
+        public int id;
+        public String name;
     }
 
     static class Production_company {
-        private String name;
-        private int id;
-        private String logo_path;
-        private String origin_country;
+        public String name;
+        public int id;
+        public String logo_path;
+        public String origin_country;
     }
 
     static class Production_country {
-        private String iso_3166_1;
-        private String name;
+        public String iso_3166_1;
+        public String name;
     }
 
     static class Spoken_language {
-        private String iso_639_1;
-        private String name;
+        public String iso_639_1;
+        public String name;
     }
 }

@@ -2,6 +2,7 @@ package com.movie.surfmie.service;
 
 import com.movie.surfmie.api.MovieApiClient;
 import com.movie.surfmie.config.Tmdb;
+import com.movie.surfmie.dto.MovieCreditsDto;
 import com.movie.surfmie.dto.MovieDetailResponseDto;
 import com.movie.surfmie.dto.MovieResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -28,5 +29,11 @@ public class MovieService {
     {
         return movieApiClient.requestMovieDetail(Tmdb.URL.getValue() + Tmdb.PATH_PARAM_Detail.getValue()
                 + id + Tmdb.URL_MIDDLE.getValue() + Tmdb.API_KEY.getValue());
+    }
+
+    public MovieCreditsDto getMovieCredits(String id)
+    {
+        return movieApiClient.getMovieCredits(Tmdb.URL.getValue() + Tmdb.PATH_PARAM_Detail.getValue()
+                + id + "/credits" + Tmdb.URL_MIDDLE.getValue() + Tmdb.API_KEY.getValue());
     }
 }
