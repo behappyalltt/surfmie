@@ -40,6 +40,16 @@
             document.getElementById("closeTermsBtn").style.display = "none";
             document.getElementById("showTermsBtn").style.display = "";
         }
+
+        function submitJoinForm() {
+            if(document.getElementById('agreement').checked) {
+                document.getElementById('joinForm').submit();
+            } else {
+                alert("개인정보 수집 및 이용에 동의하세요.");
+            }
+
+            return false;
+        }
     </script>
 </head>
 <body>
@@ -50,7 +60,7 @@
         <div class="col-lg-12">
             <h1 class="font-weight-light">Join US</h1>
 
-            <form th:action="@{/join}" method="post" class="validation-form" novalidate>
+            <form th:action="@{/join}" method="post" class="validation-form" novalidate id="joinForm">
                 <div class="row">
                     <div class="col-md-6 mb-3"><label for="first_name">이름</label>
                         <input type="text" class="form-control" id="first_name" name="first_name" placeholder="" value="" required>
@@ -97,8 +107,8 @@
                     <div class="invalid-feedback"> 별명(닉네임)을 입력해주세요.</div>
                 </div>
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="aggrement" required>
-                    <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+                    <input type="checkbox" class="custom-control-input" id="agreement" required>
+                    <label class="custom-control-label" for="agreement">개인정보 수집 및 이용에 동의합니다.</label>
                     &nbsp;<span id="showTermsBtn" onclick="showTerms()">▼</span><span id="closeTermsBtn" onclick="closeTerms()" style="display: none;">▲</span>
                     <p class="termsT" id="termsContents" style="display:none;">
                         SURFMIE는 「개인정보보호법」에 의거하여, 아래와 같은 내용으로 개인정보를 수집하고 있습니다.<br>
@@ -119,7 +129,7 @@
                 </div>
                 <hr class="mb-4">
                 <div class="mb-4"></div>
-                <button class="btn btn-dark btn-lg btn-block" style="margin-bottom:30px;" type="submit">Join Now</button>
+                <button class="btn btn-dark btn-lg btn-block" style="margin-bottom:30px;" type="button" onclick="submitJoinForm()">Join Now</button>
             </form>
         </div>
     </div>

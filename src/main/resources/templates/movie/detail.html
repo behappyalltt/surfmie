@@ -33,6 +33,10 @@
             document.getElementById(otherType+"Btn").classList.add('notChoiceBtn');
             document.getElementById(otherType).style.display = "none";
         }
+
+        function addBookmark(movie_id) {
+            alert(movie_id);
+        }
     </script>
 </head>
 <body>
@@ -47,7 +51,7 @@
             <h5 class="font-weight-light">[[${movie.tagline}]]</h5>
             <p>[[${movie.overview}]]</p>
             <img style="width:100%;margin-bottom: 1rem;" th:src="'https://image.tmdb.org/t/p/original' + ${movie.backdrop_path}">
-            <a class="btn btn-dark" href="#!">+ MY LIST</a>
+            <a class="btn btn-dark" th:onclick="'addBookmark(' + ${movie.id} + ')'">+ MY LIST</a>
         </div>
     </div>
 

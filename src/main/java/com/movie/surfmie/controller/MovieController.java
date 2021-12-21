@@ -1,8 +1,10 @@
 package com.movie.surfmie.controller;
 
+import com.movie.surfmie.config.UserCustom;
 import com.movie.surfmie.service.MemberService;
 import com.movie.surfmie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +36,7 @@ public class MovieController {
     }
 
     @GetMapping("/movie/detail")
-    public String detail(Model model, String id) {
+    public String detail(Model model, String id, @AuthenticationPrincipal UserCustom user) {
         model.addAttribute("movie", movieService.getMovieDetail(id));
         model.addAttribute("credits", movieService.getMovieCredits(id));
         return "movie/detail";
