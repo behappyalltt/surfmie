@@ -59,7 +59,7 @@
     <div class="row gx-4 gx-lg-5 align-items-center my-5">
         <div class="col-lg-12">
             <h1 class="font-weight-light">Join US</h1>
-
+            <hr>
             <form th:action="@{/join}" method="post" class="validation-form" novalidate id="joinForm">
                 <div class="row">
                     <div class="col-md-6 mb-3"><label for="first_name">이름</label>
@@ -85,7 +85,7 @@
                         <div class="invalid-feedback"> 비밀번호 확인을 입력해주세요.</div>
                     </div>
                 </div>
-                <div class="mb-3"><label for="email">핸드폰번호</label>
+                <div class="mb-3"><label for="phone">핸드폰번호</label>
                     <input type="email" class="form-control" id="phone" name="phone" placeholder="" required>
                     <div class="invalid-feedback"> 핸드폰번호를 입력해주세요.</div>
                 </div>
@@ -129,7 +129,7 @@
                 </div>
                 <hr class="mb-4">
                 <div class="mb-4"></div>
-                <button class="btn btn-dark btn-lg btn-block" style="margin-bottom:30px;" type="button" onclick="submitJoinForm()">Join Now</button>
+                <button class="btn btn-dark btn-lg btn-block" style="margin-bottom:3px;" type="button" onclick="submitJoinForm()">Join Now</button>
             </form>
         </div>
     </div>

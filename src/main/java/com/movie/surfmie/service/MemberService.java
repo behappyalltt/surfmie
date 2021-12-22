@@ -31,6 +31,11 @@ public class MemberService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<MemberEntity> userEntityWrapper = memberRepository.findByEmail(email);
+
+        if(userEntityWrapper.isEmpty()) {
+            throw new UsernameNotFoundException(email);
+        }
+
         MemberEntity userEntity = userEntityWrapper.get();
 
         List<GrantedAuthority> authorities = new ArrayList<>();
@@ -43,40 +48,6 @@ public class MemberService implements UserDetailsService {
 
         return new UserCustom(userEntity.getEmail(), userEntity.getPassword(),
                 userEntity.getId(), userEntity.getNickname(), authorities);
-       //return new User(userEntity.getEmail(), userEntity.getPassword(), authorities);
-
-
-//        Optional<MemberEntity> userEntityWrapper = memberRepository.findByEmail(email);
-//        MemberEntity userEntity = userEntityWrapper.get();
-//
-//        if(memberEntity == null) {
-//            throw new UsernameNotFoundException(email);
-//        }
-//
-//        MemberDto memberDto = new MemberDto();
-//        memberDto.setId(memberEntity.getId());
-//        memberDto.setNickname(memberEntity.getEmail());
-//        memberDto.setEmail(memberEntity.getEmail());
-//        memberDto.setPasswd(memberEntity.getPasswd());
-//        memberDto.set_enable(memberEntity.is_enabled());
-//
-//        List<GrantedAuthority> authorities = new ArrayList<>();
-//
-//        if (("admin@example.com").equals(email)) {
-//            authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
-//        } else {
-//            authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
-//        }
-//
-//        UserCustom userCustom = new UserCustom(memberDto.getEmail()
-//                , memberDto.getPasswd()
-//                , memberDto.is_enable(), !memberDto.is_enable(), !memberDto.is_enable(), !memberDto.is_enable()
-//                , authorities
-//                , memberDto.getId()
-//                , memberDto.getNickname()
-//        );
-//
-//        return userCustom;
     }
 
     public String join(MemberDto memberDto) {
@@ -131,5 +102,25 @@ public class MemberService implements UserDetailsService {
         }
 
         return id;
+    }
+
+    public MemberDto getMemberInfo(String email) {
+        MemberEntity memberEntity = memberRepository.findByEmail(email).get();
+        MemberDto memberDto = new MemberDto();
+        memberDto.setId(memberEntity.getId());
+        memberDto.setEmail(memberEntity.getEmail());
+        memberDto.setFirst_name(memberEntity.getFirst_name());
+        memberDto.setLast_name(memberEntity.getLast_name());
+        memberDto.setGender(memberEntity.getGender());
+        memberDto.setBirthDtStr((new SimpleDateFormat("YYYY-MM-DD")).format(memberEntity.getBirthDt()));
+        memberDto.setPhone(memberEntity.getPhone());
+        memberDto.setNickname(memberEntity.getNickname());
+        memberDto.setCode_id(memberEntity.getCode_id());
+        memberDto.set_enable(memberEntity.is_enabled());
+        memberDto.setCreateDt(memberEntity.getCreateDt());
+        memberDto.setUpdateDt(memberEntity.getUpdateDt());
+        memberDto.setEtc(memberEntity.getEtc());
+
+        return memberDto;
     }
 }
