@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
       layout:decorate="~{layouts/layout}">
 <head>
     <style>
@@ -35,7 +36,27 @@
         }
 
         function addBookmark(movie_id) {
-            alert(movie_id);
+            fetch("http://localhost:8080/movie/addBookmark?movie_id=" + movie_id)
+                .then(response => response.text())
+                .then(response => {
+                    if(response == "success") {
+                        location.reload();
+                    } else {
+                        alert("My List 추가에 실패하였습니다.");
+                    }
+                });
+        }
+
+        function deleteBookmark(movie_id) {
+            fetch("http://localhost:8080/movie/deleteBookmark?movie_id=" + movie_id)
+                .then(response => response.text())
+                .then(response => {
+                    if(response == "success") {
+                        location.reload();
+                    } else {
+                        alert("My List 삭제에 실패하였습니다.");
+                    }
+                });
         }
     </script>
 </head>
@@ -51,7 +72,10 @@
             <h5 class="font-weight-light">[[${movie.tagline}]]</h5>
             <p>[[${movie.overview}]]</p>
             <img style="width:100%;margin-bottom: 1rem;" th:src="'https://image.tmdb.org/t/p/original' + ${movie.backdrop_path}">
-            <a class="btn btn-dark" th:onclick="'addBookmark(' + ${movie.id} + ')'">+ MY LIST</a>
+            <a sec:authorize="isAuthenticated()" th:style="${bookmark == true? 'display:none;' : ''}"
+               class="btn btn-warning" th:onclick="'addBookmark(' + ${movie.id} + ')'">+ MY LIST</a>
+            <a sec:authorize="isAuthenticated()" th:style="${bookmark == true? '' : 'display:none;'}"
+               class="btn btn-dark" th:onclick="'deleteBookmark(' + ${movie.id} + ')'">- MY LIST</a>
         </div>
     </div>
 

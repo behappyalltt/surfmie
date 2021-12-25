@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -22,5 +24,20 @@ public class BookmarkService {
                         .createDt(new Date())
                 .build()
         ).getBookmarkPrimaryKey();
+    }
+
+    public void deleteBookmark(BookmarkDto bookmarkDto) {
+        bookmarkRepository.deleteById(new BookmarkPrimaryKey(bookmarkDto.getMember_id(), bookmarkDto.getMovie_id()));
+    }
+
+    public boolean getBookmark(String movie_id, String member_id) {
+        BookmarkPrimaryKey bookmarkPrimaryKey = new BookmarkPrimaryKey(member_id, movie_id);
+        Optional<BookmarkEntity> bookmarkEntity = bookmarkRepository.findById(bookmarkPrimaryKey);
+        if(bookmarkEntity.isEmpty()) return false;
+        else return true;
+    }
+
+    public List<BookmarkEntity> getBookmarks(String member_id) {
+        return bookmarkRepository.findAllByMember_id(member_id);
     }
 }

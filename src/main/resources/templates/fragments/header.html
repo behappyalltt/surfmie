@@ -13,16 +13,16 @@
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item"><a th:attr="class=${#strings.equals(#httpServletRequest.requestURI, '/') || #strings.equals(#httpServletRequest.requestURI, '') == true ? 'active nav-link' : 'nav-link'}"
                                     aria-current="page" href="/">HOME</a></li>
-            <li class="nav-item"><a th:attr="class=${#strings.equals(#httpServletRequest.requestURI, '/movie/new') == true ? 'active nav-link' : 'nav-link'}"
+            <!--<li class="nav-item"><a th:attr="class=${#strings.equals(#httpServletRequest.requestURI, '/movie/new') == true ? 'active nav-link' : 'nav-link'}"
                                     href="/movie/new">NEW</a></li>
             <li class="nav-item"><a th:attr="class=${#strings.equals(#httpServletRequest.requestURI, '/movie/popular') == true ? 'active nav-link' : 'nav-link'}"
-                                    href="/movie/popular">POPULAR</a></li>
+                                    href="/movie/popular">POPULAR</a></li>-->
             <li class="nav-item"><a th:attr="class=${#strings.equals(#httpServletRequest.requestURI, '/login') == true ? 'active nav-link' : 'nav-link'}"
                                     sec:authorize="isAnonymous()" th:href="@{/login}">LOGIN</a></li>
             <li class="nav-item"><a th:attr="class=${#strings.equals(#httpServletRequest.requestURI, '/join') == true ? 'active nav-link' : 'nav-link'}"
                                     sec:authorize="isAnonymous()" th:href="@{/join}">JOIN</a></li>
-            <li class="nav-item"><a th:attr="class=${#strings.equals(#httpServletRequest.requestURI, '/mylist') == true ? 'active nav-link' : 'nav-link'}"
-                                    sec:authorize="isAuthenticated()" th:href="@{/mylist}">MY LIST</a></li>
+            <li class="nav-item"><a th:attr="class=${#strings.equals(#httpServletRequest.requestURI, '/movie/mylist') == true ? 'active nav-link' : 'nav-link'}"
+                                    sec:authorize="isAuthenticated()" th:href="@{/movie/mylist}">MY LIST</a></li>
             <li class="nav-item"><a th:attr="class=${#strings.equals(#httpServletRequest.requestURI, '/mypage') == true ? 'active nav-link' : 'nav-link'}"
                                     sec:authorize="isAuthenticated()" th:href="@{/mypage}">
               <span sec:authentication="principal.nickname">Username</span></a></li>

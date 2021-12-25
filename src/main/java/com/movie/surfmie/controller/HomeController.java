@@ -3,6 +3,7 @@ package com.movie.surfmie.controller;
 import com.movie.surfmie.dto.MemberDto;
 import com.movie.surfmie.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,9 +25,14 @@ public class HomeController {
 
     @PostMapping("/join")
     public String join(MemberDto memberDto) {
-        memberService.join(memberDto);
-
-        return "redirect:/login";
+        try {
+            memberService.join(memberDto);
+            return "redirect:/login";
+        } catch (DuplicateKeyException e) {
+            return "redirect:/join?error";
+        } catch (Exception e) {
+            return "redirect:/join?error";
+        }
     }
 
     // 접근 불가 페이지

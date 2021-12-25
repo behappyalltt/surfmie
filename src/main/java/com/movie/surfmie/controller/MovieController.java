@@ -1,7 +1,7 @@
 package com.movie.surfmie.controller;
 
 import com.movie.surfmie.config.UserCustom;
-import com.movie.surfmie.service.MemberService;
+import com.movie.surfmie.service.BookmarkService;
 import com.movie.surfmie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MovieController {
     @Autowired
-    private MemberService memberService;
+    private BookmarkService bookmarkService;
 
     @Autowired
     private MovieService movieService;
@@ -36,9 +36,16 @@ public class MovieController {
     }
 
     @GetMapping("/movie/detail")
-    public String detail(Model model, String id) {
+    public String detail(Model model, String id, @AuthenticationPrincipal UserCustom user) {
         model.addAttribute("movie", movieService.getMovieDetail(id));
         model.addAttribute("credits", movieService.getMovieCredits(id));
+        if(user != null) model.addAttribute("bookmark", bookmarkService.getBookmark(id, user.getId()));
         return "movie/detail";
+    }
+
+    @GetMapping("/movie/mylist")
+    public String mylist(Model model, @AuthenticationPrincipal UserCustom user) {
+        model.addAttribute("bookmarks", bookmarkService.getBookmarks(user.getId()));
+        return "movie/mylist";
     }
 }

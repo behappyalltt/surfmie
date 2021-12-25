@@ -7,7 +7,9 @@ import com.movie.surfmie.entity.MemberEntity;
 import com.movie.surfmie.config.Role;
 import com.movie.surfmie.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.mapping.UniqueKey;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +18,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -51,6 +54,12 @@ public class MemberService implements UserDetailsService {
     }
 
     public String join(MemberDto memberDto) {
+        if(validateDuplicateEmail(memberDto.getEmail()) == false) {
+            throw new DuplicateKeyException(memberDto.getEmail());
+        } else if(validateDuplicateNickname(memberDto.getNickname()) == false) {
+            throw new DuplicateKeyException(memberDto.getNickname());
+        }
+
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         memberDto.setPasswd(encoder.encode(memberDto.getPasswd()));
 
@@ -102,6 +111,18 @@ public class MemberService implements UserDetailsService {
         }
 
         return id;
+    }
+
+    public boolean validateDuplicateEmail(String email) {
+        Optional<MemberEntity> member = memberRepository.findByEmail(email);
+        if(member != null) return false;
+        else return true;
+    }
+
+    public boolean validateDuplicateNickname(String nickname) {
+        Optional<MemberEntity> member = memberRepository.findByNickname(nickname);
+        if(member != null) return false;
+        else return true;
     }
 
     public MemberDto getMemberInfo(String email) {
