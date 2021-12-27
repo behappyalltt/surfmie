@@ -9,16 +9,15 @@ import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
 
-// lombok 사용
-// Security 에서 사용되는 User 에서 파라미터를 추가함.
-//@Data         // constructor 도중 에러가 발생하므로 사용하지 않음
+// Security 에서 사용되는 User에 파라미터 추가
 @Getter
 @Setter
+//@Data (constructor 도중 에러가 발생하므로 사용하지 않음)
 @ToString
 public class UserCustom extends User {
     private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 
-    // 유저의 정보를 더 추가하고 싶다면 이곳과, 아래의 생성자 파라미터를 조절해야 한다.
+    // 추가할 유저 정보
     private String id;
     private String nickname;
 

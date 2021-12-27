@@ -16,6 +16,7 @@ public class TermsAgreeService {
     @Autowired
     private TermsAgreeRepository termsAgreeRepository;
 
+    // 개인정보 동의 기록
     public TermsAgreePrimaryKey agreeTerms(TermsAgreeDto termsAgreeDto) {
         return termsAgreeRepository.save(TermsAgreeEntity.builder()
                         .termsAgreePrimaryKey(new TermsAgreePrimaryKey(termsAgreeDto.getMember_id(), termsAgreeDto.getTerms_id()))

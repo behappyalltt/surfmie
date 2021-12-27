@@ -31,6 +31,7 @@ public class MemberService implements UserDetailsService {
     @Autowired
     private TermsAgreeService termsAgreeService;
 
+    // 회원 정보 가져오기
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<MemberEntity> userEntityWrapper = memberRepository.findByEmail(email);
@@ -53,6 +54,7 @@ public class MemberService implements UserDetailsService {
                 userEntity.getId(), userEntity.getNickname(), authorities);
     }
 
+    // 회원가입(spring security)
     public String join(MemberDto memberDto) {
         if(validateDuplicateEmail(memberDto.getEmail()) == false) {
             throw new DuplicateKeyException(memberDto.getEmail());
@@ -60,9 +62,11 @@ public class MemberService implements UserDetailsService {
             throw new DuplicateKeyException(memberDto.getNickname());
         }
 
+        // 비밀번호 암호화
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         memberDto.setPasswd(encoder.encode(memberDto.getPasswd()));
 
+        // 생년월일 String -> Date 변환
         try {
             SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
             memberDto.setBirthDt(transFormat.parse(memberDto.getBirthDtStr()));
@@ -75,6 +79,7 @@ public class MemberService implements UserDetailsService {
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         String id = transFormat.format(date);
 
+        // id 생성
         String[] emailId = memberDto.getEmail().split("@");
         if (emailId[0].length() > 6) {
             id += emailId[0].substring(0, 6);
@@ -101,8 +106,8 @@ public class MemberService implements UserDetailsService {
                 .code_id("M04").is_enabled(true).createDt(new Date()).updateDt(new Date())
                 .build()).getId();
 
+        // terms_agree 처리 (개인정보 동의 여부)
         if (id != null) {
-            // terms_agree 처리 (개인정보)
             TermsAgreeDto termsAgreeDto = new TermsAgreeDto();
             termsAgreeDto.setMember_id(id);
             termsAgreeDto.setTerms_id("TERMS01211221");
@@ -113,18 +118,21 @@ public class MemberService implements UserDetailsService {
         return id;
     }
 
+    // 이메일 중복 체크
     public boolean validateDuplicateEmail(String email) {
         Optional<MemberEntity> member = memberRepository.findByEmail(email);
-        if(member != null) return false;
-        else return true;
+        if(member.isEmpty()) return true;
+        else return false;
     }
 
+    // 별명(닉네임) 중복 체크 
     public boolean validateDuplicateNickname(String nickname) {
         Optional<MemberEntity> member = memberRepository.findByNickname(nickname);
-        if(member != null) return false;
-        else return true;
+        if(member.isEmpty()) return true;
+        else return false;
     }
 
+    // 회원 정보 가져오기
     public MemberDto getMemberInfo(String email) {
         MemberEntity memberEntity = memberRepository.findByEmail(email).get();
         MemberDto memberDto = new MemberDto();

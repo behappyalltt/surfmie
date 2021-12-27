@@ -10,6 +10,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+// tmdb api 연동
+// RestTemplate 사용
 @RequiredArgsConstructor
 @Service
 public class MovieApiClient {

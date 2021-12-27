@@ -42,13 +42,77 @@
         }
 
         function submitJoinForm() {
-            if(document.getElementById('agreement').checked) {
-                document.getElementById('joinForm').submit();
-            } else {
+            if(document.getElementById("email").value == "") {
+                alert("이메일을 입력하세요.");
+            } else if(document.getElementById("first_name").value == "") {
+                alert("이름을 입력하세요.");
+            } else if(document.getElementById("last_name").value == "") {
+                alert("성(이름)을 입력하세요.");
+            } else if(document.getElementById("passwd").value == "") {
+                alert("비밀번호를 입력하세요.");
+            } else if(document.getElementById("passwd").value != document.getElementById("passwd_check").value) {
+                alert("비밀번호가 일치하지 않습니다.");
+            } else if(document.getElementById("phone").value == "") {
+                alert("핸드폰 번호를 입력하세요.");
+            } else if(document.getElementById("birthDtStr").value == "") {
+                alert("생년월일을 입력하세요.");
+            } else if(document.getElementById("nickname").value == "") {
+                alert("별명(닉네임)을 입력하세요.");
+            } else if(document.getElementById('agreement').checked == false) {
                 alert("개인정보 수집 및 이용에 동의하세요.");
+            } else {
+                fetch("http://localhost:8080/member/validateDuplicateEmail?email=" + document.getElementById('email').value)
+                    .then(response => response.text())
+                    .then(response => {
+                        if(response == 'true') {
+                            fetch("http://localhost:8080/member/validateDuplicateNickname?nickname=" + document.getElementById('nickname').value)
+                                .then(response => response.text())
+                                .then(response => {
+                                    if(response == "true") {
+                                        document.getElementById('joinForm').submit();
+                                    } else {
+                                        document.getElementById("nickname").value = '';
+                                        alert("이미 등록된 별명(닉네임)입니다.");
+                                    }
+                                });
+                        } else {
+                            document.getElementById("email").value = '';
+                            alert("이미 등록된 이메일입니다.");
+                        }
+                    });
             }
 
             return false;
+        }
+
+        function validateDuplicateEmail() {
+            fetch("http://localhost:8080/member/validateDuplicateEmail?email=" + document.getElementById('email').value)
+                .then(response => response.text())
+                .then(response => {
+                    if(response == 'true') {
+                        alert("사용 가능한 이메일입니다.");
+                    } else {
+                        document.getElementById("email").value = '';
+                        alert("이미 등록된 이메일입니다.");
+                    }
+                });
+        }
+
+        function validateDuplicateNickname() {
+            fetch("http://localhost:8080/member/validateDuplicateNickname?nickname=" + document.getElementById('nickname').value)
+                .then(response => response.text())
+                .then(response => {
+                    if(response == "true") {
+                        alert("사용 가능한 별명(닉네임)입니다.");
+                    } else {
+                        document.getElementById("nickname").value = '';
+                        alert("이미 등록된 별명(닉네임)입니다.");
+                    }
+                });
+        }
+
+        function inputPasswd() {
+            document.getElementById("passwd_check").value = '';
         }
     </script>
 </head>
@@ -71,13 +135,22 @@
                         <div class="invalid-feedback"> 성(이름)을 입력해주세요.</div>
                     </div>
                 </div>
-                <div class="mb-3"><label for="email">이메일</label>
+                <div class="row">
+                    <div class="col-md-6 mb-3"><label for="email">이메일</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+                        <div class="invalid-feedback"> 이메일을 입력해주세요.</div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <a class="btn btn-primary" style="margin-top: 25px;" onclick="validateDuplicateEmail()">중복확인</a>
+                    </div>
+                </div>
+                <!--<div class="mb-3"><label for="email">이메일</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
                     <div class="invalid-feedback"> 이메일을 입력해주세요.</div>
-                </div>
+                </div>-->
                 <div class="row">
                     <div class="col-md-6 mb-3"><label for="passwd">비밀번호</label>
-                        <input type="password" class="form-control" id="passwd" name="passwd" placeholder="" value="" required>
+                        <input type="password" class="form-control" id="passwd" name="passwd" oninput="inputPasswd()" required>
                         <div class="invalid-feedback"> 비밀번호를 입력해주세요.</div>
                     </div>
                     <div class="col-md-6 mb-3"><label for="passwd_check">비밀번호 확인</label>
@@ -86,7 +159,7 @@
                     </div>
                 </div>
                 <div class="mb-3"><label for="phone">핸드폰번호</label>
-                    <input type="email" class="form-control" id="phone" name="phone" placeholder="" required>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="" required>
                     <div class="invalid-feedback"> 핸드폰번호를 입력해주세요.</div>
                 </div>
                 <div class="row">
@@ -102,10 +175,19 @@
                         <div class="invalid-feedback"> 생년월일을 입력해주세요.</div>
                     </div>
                 </div>
-                <div class="mb-3"><label for="nickname">별명(닉네임)</label>
+                <div class="row">
+                    <div class="col-md-6 mb-3"><label for="nickname">별명(닉네임)</label>
+                        <input type="text" class="form-control" id="nickname" name="nickname" placeholder="" required>
+                        <div class="invalid-feedback"> 별명(닉네임)을 입력해주세요.</div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <a class="btn btn-primary" style="margin-top: 25px;" onclick="validateDuplicateNickname()">중복확인</a>
+                    </div>
+                </div>
+                <!--<div class="mb-3"><label for="nickname">별명(닉네임)</label>
                     <input type="email" class="form-control" id="nickname" name="nickname" placeholder="" required>
                     <div class="invalid-feedback"> 별명(닉네임)을 입력해주세요.</div>
-                </div>
+                </div>-->
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="agreement" required>
                     <label class="custom-control-label" for="agreement">개인정보 수집 및 이용에 동의합니다.</label>

@@ -40,16 +40,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/movie/mylist").hasRole("MEMBER")
                 .antMatchers("/").permitAll()
 
+                // 로그인 설정
                 .and().formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/")
-                .permitAll()
+                .loginPage("/login")            // 로그인 페이지
+                .defaultSuccessUrl("/")         // 로그인 성공 후 이동할 페이지
+                .permitAll()                    // 모든 사람에게 권한
 
+                // 로그아웃 설정
                 .and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
-                .invalidateHttpSession(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))          // 로그아웃 페이지
+                .logoutSuccessUrl("/")                                                      // 로그아웃 성공 후 이동할 페이지
+                .invalidateHttpSession(true)                                                // 로그아웃 후 세션 모두 삭제
 
+                // 권한 없을 때
                 .and().exceptionHandling()
                 .accessDeniedPage("/denied");
     }

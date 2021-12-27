@@ -16,6 +16,7 @@ public class MyPageController {
     @Autowired
     private MemberService memberService;
 
+    // 마이페이지
     @GetMapping("/mypage")
     public String mypage(Model model, @AuthenticationPrincipal UserCustom user) {
         model.addAttribute("member", memberService.getMemberInfo(user.getUsername()));

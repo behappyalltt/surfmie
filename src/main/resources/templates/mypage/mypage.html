@@ -79,7 +79,7 @@
                 </div>
                 <div class="mb-3"><label for="nickname">별명(닉네임)</label>
                     <input type="email" class="form-control" id="nickname" name="nickname" placeholder=""
-                           th:value="'\'' + ${member.nickname} + '\''" disabled required>
+                           th:value="${member.nickname}" disabled required>
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="mb-4"></div>

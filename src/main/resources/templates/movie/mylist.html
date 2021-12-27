@@ -11,6 +11,26 @@
             <h1 class="font-weight-light">MY LIST</h1>
         </div>
     </div>
+
+    <div class="row gx-4 gx-lg-5" style="float:left;">
+        <div class="col-md-4 mb-5" th:each="movie : ${movies}">
+            <div class="card h-100">
+                <div class="card-body">
+                    <img style="width: 100%;"
+                         th:src="'https://image.tmdb.org/t/p/original' + ${movie.poster_path}">
+                    <hr>
+                    <h2 class="card-title">[[${movie.title}]]</h2>
+                    <p class="card-text" style="font-weight: bold">[[${movie.release_date}]]</p>
+                    <p class="card-text">[[${#strings.abbreviate(movie.overview,100)}]]</p>
+                </div>
+                <div class="card-footer"><a class="btn btn-dark btn-sm" th:onclick="'location.href=\'/movie/detail?id='+${movie.id}+'\''">More Info</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card text-white my-5 py-4 text-center" style="border-color:white;">
+        <div class="card-body"><p class="text-white m-0"></p></div>
+    </div>
 </div>
 </body>
 </html>
