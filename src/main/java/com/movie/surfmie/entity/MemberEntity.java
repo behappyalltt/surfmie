@@ -45,6 +45,7 @@ public class MemberEntity implements UserDetails {
 
     private String etc;
 
+    // 사용자의 권한을 콜렉션 형태로 반환
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> roles = new HashSet<>();
@@ -54,31 +55,41 @@ public class MemberEntity implements UserDetails {
         return roles;
     }
 
+    // 비밀번호 반환
     @Override
     public String getPassword() {
         return passwd;
     }
 
+    // username 반환 (unique한 값)
     @Override
     public String getUsername() {
         return email;
     }
 
+    // 계정 만료 여부 반환
+    // 만료 -> false
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    // 계정 잠금 여부 반환
+    // 만료 -> false
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    // password 만료 여부 반환
+    // 만료 -> false
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    // 계정 사용 가능 여부 반환
+    // 사용 불가 -> false
     @Override
     public boolean isEnabled() {
         return true;
