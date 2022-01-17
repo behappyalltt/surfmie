@@ -1,0 +1,51 @@
+/* 코드 테이블 */
+	code_id			varchar(10)		pk			코드
+	p_code_id		varchar(10)					상위 코드
+	code_name		varchar(20)					코드명
+	code_ord		int(11)						코드 우선순위
+	is_enabled		boolean						코드 활성화 
+	createDt		datetime					생성 날짜
+	updateDt		datetime					수정 날짜
+	etc				varchar(50)
+/* 코드 테이블 */
+
+/* 회원 테이블 */
+	id				varchar(20)		pk uk		id
+	email			varchar(50)		uk			이메일
+	passwd			varchar(20)					비밀번호
+	first_name		varchar(20)					이름(성)
+	lase_name		varchar(30)					이름
+	gender			char(1)						성별
+	birthDt			datetime					생년월일
+	phone			varchar(20)					전화번호
+	nickname		varchar(30)		uk			별명(사이트에서 사용하는 이름/닉네임
+	code_id			varchar(10)		fk			코드(회원 등급)
+	is_enabled		boolean						활성화 
+	createDt		datetime					생성 날짜
+	updateDt		datetime					수정 날짜
+	etc				varchar(50)
+/* 회원 테이블 */
+
+/* 북마크(My List) 테이블 */
+	member_id		varchar(20)		pk fk		회원 ID
+	movie_id		varchar(20)		pk			영화 id(tmdb에서 제공)
+	createDt		datetime					생성 날짜
+/* 북마크(My List) 테이블 */
+
+/* 약관 테이블 */
+	id				varchar(20)		pk uk		id
+	terms_name		varchar(20)		uk			약관 항목
+	applyDt			datetime					적용 일자
+	terms_contents	text						약관 내용
+	is_required		boolean						필수 여부
+	is_enabled		boolean						사용 여부
+	etc				varchar(50)
+/* 약관 테이블 */
+
+/* 약관 동의 테이블 */
+	member_id		varchar(20)		pk fk		회원 ID
+	terms_id		varchar(20)		pk fk		약관 id
+	is_agree		boolean						동의 여부
+	agreeDt			datetime					동의 날짜
+	etc				varchar(50)
+/* 약관 동의 테이블 */
